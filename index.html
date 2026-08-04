@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jordan + Connor — March 24, 2027 — Drumtochty Castle, Scotland</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FEFFE9;
+    --olive: #2E3105;
+    --olive-soft: #4A4E1A;
+    --accent: #C4C98A;
+    --accent-deep: #8A8F3C;
+    --card: #F7F8D8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--olive);
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .display {
+    font-family: "Bricolage Grotesque", "Arial Black", sans-serif;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 28px;
+    background: color-mix(in srgb, var(--cream) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1.5px solid var(--olive);
+  }
+  nav .brand { font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 1.15rem; text-decoration: none; }
+  nav .links { display: flex; gap: 22px; align-items: center; }
+  nav .links a { text-decoration: none; font-family: "Bricolage Grotesque", sans-serif; font-size: .95rem; font-weight: 500; }
+  nav .links a:hover { color: var(--accent-deep); }
+  .btn {
+    display: inline-block;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 700;
+    background: var(--olive);
+    color: var(--cream) !important;
+    padding: 10px 26px;
+    border-radius: 999px;
+    text-decoration: none;
+    border: 1.5px solid var(--olive);
+    transition: all .18s ease;
+  }
+  .btn:hover { background: var(--cream); color: var(--olive) !important; }
+  .btn.ghost { background: transparent; color: var(--olive) !important; }
+  .btn.ghost:hover { background: var(--olive); color: var(--cream) !important; }
+  @media (max-width: 640px) { nav .links a:not(.btn) { display: none; } }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+    padding: 60px 6vw 70px;
+    max-width: 1250px;
+    margin: 0 auto;
+  }
+  .hero .eyebrow {
+    font-family: "Bricolage Grotesque", sans-serif;
+    letter-spacing: .28em;
+    font-size: .8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: clamp(3rem, 7.5vw, 6.2rem);
+    font-weight: 750;
+    margin-bottom: 26px;
+  }
+  .hero h1 em { font-family: "Fraunces", serif; font-style: italic; font-weight: 400; }
+  .hero .date-line { font-size: 1.25rem; font-style: italic; margin-bottom: 8px; }
+  .hero .place-line { font-family: "Bricolage Grotesque", sans-serif; font-weight: 600; font-size: 1.05rem; margin-bottom: 30px; }
+  .hero .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-photo {
+    border-radius: 200px 200px 18px 18px;
+    overflow: hidden;
+    border: 1.5px solid var(--olive);
+    box-shadow: 10px 10px 0 var(--accent);
+  }
+  .hero-photo img { width: 100%; height: 560px; object-fit: cover; }
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; padding-top: 40px; }
+    .hero-photo img { height: 420px; }
+  }
+
+  /* ---------- Countdown ---------- */
+  .countdown {
+    display: flex; justify-content: center; gap: clamp(18px, 5vw, 60px);
+    padding: 26px 20px;
+    border-top: 1.5px solid var(--olive);
+    border-bottom: 1.5px solid var(--olive);
+    background: var(--card);
+  }
+  .countdown .unit { text-align: center; }
+  .countdown .num { font-family: "Bricolage Grotesque", sans-serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 750; }
+  .countdown .lbl { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; font-family: "Bricolage Grotesque", sans-serif; }
+
+  /* ---------- Marquee ---------- */
+  .marquee {
+    overflow: hidden;
+    border-top: 1.5px solid var(--olive);
+    border-bottom: 1.5px solid var(--olive);
+    background: var(--olive);
+    color: var(--cream);
+    padding: 10px 0;
+    white-space: nowrap;
+  }
+  .marquee .track {
+    display: inline-block;
+    animation: scroll 22s linear infinite;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: .06em;
+  }
+  .marquee span { margin: 0 14px; }
+  .marquee .star { color: var(--accent); }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ---------- Sections ---------- */
+  section { padding: 80px 6vw; max-width: 1250px; margin: 0 auto; }
+  .section-head { margin-bottom: 44px; }
+  .section-head h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 750; }
+  .section-head p.sub { font-style: italic; font-size: 1.1rem; margin-top: 10px; max-width: 640px; }
+
+  /* Day-of cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 26px; }
+  .card {
+    background: var(--card);
+    border: 1.5px solid var(--olive);
+    border-radius: 18px;
+    padding: 30px;
+    position: relative;
+  }
+  .card .tag {
+    display: inline-block;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: .72rem; font-weight: 700;
+    letter-spacing: .22em; text-transform: uppercase;
+    background: var(--olive); color: var(--cream);
+    padding: 5px 14px; border-radius: 999px;
+    margin-bottom: 16px;
+  }
+  .card h3 { font-size: 1.6rem; margin-bottom: 6px; }
+  .card .time { font-style: italic; font-size: 1.05rem; margin-bottom: 14px; }
+  .card p { font-size: .98rem; }
+  .card a.map { font-size: .9rem; font-family: "Bricolage Grotesque", sans-serif; font-weight: 600; }
+
+  /* Photo strip */
+  .photo-strip {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+    padding: 0 6vw 80px; max-width: 1250px; margin: 0 auto;
+  }
+  .photo-strip .ph {
+    border: 1.5px solid var(--olive); border-radius: 16px; overflow: hidden;
+  }
+  .photo-strip .ph img { width: 100%; height: 340px; object-fit: cover; transition: transform .4s ease; }
+  .photo-strip .ph:hover img { transform: scale(1.04); }
+  .photo-strip .ph:nth-child(2) { transform: translateY(26px); }
+  @media (max-width: 720px) {
+    .photo-strip { grid-template-columns: 1fr; }
+    .photo-strip .ph:nth-child(2) { transform: none; }
+    .photo-strip .ph img { height: 300px; }
+  }
+
+  /* Travel */
+  .travel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 26px; }
+  .travel-grid .card ul { list-style: none; margin-top: 8px; }
+  .travel-grid .card li { padding: 7px 0 7px 26px; position: relative; font-size: .97rem; border-bottom: 1px dashed var(--accent-deep); }
+  .travel-grid .card li:last-child { border-bottom: none; }
+  .travel-grid .card li::before { content: "☆"; position: absolute; left: 0; color: var(--accent-deep); }
+
+  /* Registry */
+  .registry {
+    background: var(--olive); color: var(--cream);
+    border-radius: 24px;
+    padding: clamp(36px, 6vw, 70px);
+    text-align: center;
+  }
+  .registry h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); margin-bottom: 18px; }
+  .registry p { max-width: 620px; margin: 0 auto 28px; font-size: 1.05rem; }
+  .registry .btn { background: var(--cream); color: var(--olive) !important; border-color: var(--cream); }
+  .registry .btn:hover { background: transparent; color: var(--cream) !important; }
+
+  /* FAQ / dress code */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+  details {
+    border-bottom: 1.5px solid var(--olive);
+    padding: 16px 0;
+  }
+  details summary {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 650; font-size: 1.08rem;
+    cursor: pointer; list-style: none;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  details summary::after { content: "+"; font-size: 1.4rem; font-weight: 400; }
+  details[open] summary::after { content: "–"; }
+  details p { padding-top: 10px; font-size: .98rem; }
+
+  /* Footer */
+  footer {
+    border-top: 1.5px solid var(--olive);
+    text-align: center;
+    padding: 70px 20px 50px;
+  }
+  footer .big {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-size: clamp(2.4rem, 8vw, 5rem);
+    font-weight: 750;
+    margin-bottom: 24px;
+  }
+  footer .small { font-size: .85rem; margin-top: 36px; font-style: italic; opacity: .75; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="#top">J + C</a>
+  <div class="links">
+    <a href="#day">The Day</a>
+    <a href="#travel">Travel</a>
+    <a href="#registry">Registry</a>
+    <a href="#faq">FAQ</a>
+    <a class="btn" href="https://www.jordanconnor.com/rsvp">RSVP</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div>
+    <div class="eyebrow">Save the date ☆ Scotland 2027</div>
+    <h1>Jordan <em>&amp;</em> Connor are getting married!</h1>
+    <p class="date-line">Wednesday, March 24, 2027</p>
+    <p class="place-line">Drumtochty Castle · Auchenblae, Scotland</p>
+    <div class="cta-row">
+      <a class="btn" href="https://www.jordanconnor.com/rsvp">RSVP</a>
+      <a class="btn ghost" href="#travel">Plan your trip</a>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <img src="https://images.squarespace-cdn.com/content/v1/6a669e9461e351419c1a9b37/e2a1c79b-8078-4cd9-b610-2b84cb3f4ea5/IMG_7042.JPG" alt="Jordan and Connor">
+  </div>
+</header>
+
+<div class="countdown" id="countdown">
+  <div class="unit"><div class="num" id="cd-d">—</div><div class="lbl">Days</div></div>
+  <div class="unit"><div class="num" id="cd-h">—</div><div class="lbl">Hours</div></div>
+  <div class="unit"><div class="num" id="cd-m">—</div><div class="lbl">Minutes</div></div>
+  <div class="unit"><div class="num" id="cd-s">—</div><div class="lbl">Seconds</div></div>
+</div>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="marquee1"></div>
+</div>
+
+<section id="day">
+  <div class="section-head">
+    <h2>The big day</h2>
+    <p class="sub">If you're staying on the property, check-in begins at 3pm on Monday, March 22 and check-out is at 11am on Thursday, March 25.</p>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <span class="tag">Ceremony</span>
+      <h3>St Palladius</h3>
+      <p class="time">1:00pm – 2:00pm</p>
+      <p>Auchenblae, Laurencekirk AB30 1TP, Scotland</p>
+      <p style="margin-top:12px"><a class="map" href="https://www.drumtochtycastle.com/st-palladius">About the chapel ↗</a></p>
+    </div>
+    <div class="card">
+      <span class="tag">Reception</span>
+      <h3>Drumtochty Castle</h3>
+      <p class="time">4:00pm – all night ;P</p>
+      <p>Auchenblae, Laurencekirk AB30 1TP, Scotland</p>
+      <p style="margin-top:12px"><a class="map" href="https://www.drumtochtycastle.com/">About the castle ↗</a></p>
+    </div>
+    <div class="card">
+      <span class="tag">Dress code</span>
+      <h3>Whatever makes you feel your best</h3>
+      <p class="time">Truly.</p>
+      <p>We look forward to seeing you and celebrating with you!</p>
+    </div>
+  </div>
+</section>
+
+<div class="photo-strip">
+  <div class="ph"><img src="https://images.squarespace-cdn.com/content/v1/6a669e9461e351419c1a9b37/b13fdd0d-3c79-42d6-ba24-de6bdcd83635/untitled-9832.JPG" alt="Engagement photo"></div>
+  <div class="ph"><img src="https://images.squarespace-cdn.com/content/v1/6a669e9461e351419c1a9b37/9b5bf357-aab0-41dd-943e-4776d3fd262c/untitled-9119.JPG" alt="Engagement photo"></div>
+  <div class="ph"><img src="https://images.squarespace-cdn.com/content/v1/6a669e9461e351419c1a9b37/faffe7f8-6e77-4f77-85e4-c4c015e7b0c7/untitled-9521.JPG" alt="Engagement photo"></div>
+</div>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="marquee2"></div>
+</div>
+
+<section id="travel">
+  <div class="section-head">
+    <h2>Getting to Scotland</h2>
+    <p class="sub">Many of you are traveling across the globe to celebrate with us — here's how to make it easy.</p>
+  </div>
+  <div class="travel-grid">
+    <div class="card">
+      <span class="tag">Fly in</span>
+      <h3><a href="https://www.aberdeenairport.com/" style="text-decoration:none">Aberdeen Airport</a></h3>
+      <ul>
+        <li>31 miles from the venue</li>
+        <li>Closest option — easy transportation to the venue</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag">Fly in</span>
+      <h3><a href="https://www.edinburghairport.com/" style="text-decoration:none">Edinburgh Airport</a></h3>
+      <ul>
+        <li>103 miles from the venue</li>
+        <li>Easy car rentals — recommended if you're staying</li>
+        <li>Fly in a day early to explore! Edinburgh was one of our favorite stops on our engagement trip</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag">Get around</span>
+      <h3><a href="https://www.rome2rio.com/map/Edinburgh-Airport-EDI/Drumtochty-Castle?departureDate=2027-03-22&accom_comparison=true" style="text-decoration:none">Bus to Laurencekirk</a></h3>
+      <ul>
+        <li>About 3 hours from Edinburgh Airport</li>
+        <li>Drop-off is 6 miles from the venue</li>
+        <li>Around $20 a ticket</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="tag">Get around</span>
+      <h3><a href="https://www.rome2rio.com/map/Aberdeen/Laurencekirk?accom_comparison=true" style="text-decoration:none">Train from Aberdeen</a></h3>
+      <ul>
+        <li>About 30 minutes to Laurencekirk</li>
+        <li>Drop-off is 8 miles from the venue</li>
+        <li>$17–35 a ticket</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="registry">
+  <div class="registry">
+    <h2>Registry</h2>
+    <p>Your presence means the world to us and is all we ask for. If you'd still like to contribute to our honeymoon fund, you can do so below.</p>
+    <a class="btn" href="https://account.venmo.com/u/jshafer">Honeymoon fund ↗</a>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="two-col">
+    <div class="section-head" style="margin-bottom:0">
+      <h2>Good to know</h2>
+      <p class="sub">A few answers before you ask — and if we missed something, just reach out.</p>
+    </div>
+    <div>
+      <details open>
+        <summary>When should I RSVP?</summary>
+        <p>As soon as you can! Use the RSVP button at the top of the page.</p>
+      </details>
+      <details>
+        <summary>Can I stay at the castle?</summary>
+        <p>If you're staying on the property, check-in begins at 3pm on Monday, March 22 and check-out is at 11am on Thursday, March 25.</p>
+      </details>
+      <details>
+        <summary>What should I wear?</summary>
+        <p>Whatever makes you feel your best. March in Scotland is chilly (40s°F) — bring layers!</p>
+      </details>
+      <details>
+        <summary>Do I need a car?</summary>
+        <p>Renting a car is the easiest way to reach the castle, especially from Edinburgh. Buses and trains get you to Laurencekirk, 6–8 miles from the venue.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="big">See you in Scotland ☆</div>
+  <a class="btn" href="https://www.jordanconnor.com/rsvp">RSVP</a>
+  <div class="small">Jordan + Connor · March 24, 2027 · Drumtochty Castle</div>
+</footer>
+
+<script>
+  // Marquee strips
+  const words = ["Jordan","☆","Connor","☆","03.24.27","☆","Scotland","☆"];
+  const strip = Array(8).fill(words.map(w => w === "☆" ? '<span class="star">☆</span>' : `<span>${w}</span>`).join("")).join("");
+  document.getElementById("marquee1").innerHTML = strip + strip;
+  document.getElementById("marquee2").innerHTML = strip + strip;
+
+  // Countdown to ceremony (1pm UK time, March 24 2027)
+  const target = new Date("2027-03-24T13:00:00+00:00").getTime();
+  function tick() {
+    let diff = Math.max(0, target - Date.now());
+    const d = Math.floor(diff / 864e5); diff -= d * 864e5;
+    const h = Math.floor(diff / 36e5); diff -= h * 36e5;
+    const m = Math.floor(diff / 6e4); diff -= m * 6e4;
+    const s = Math.floor(diff / 1e3);
+    document.getElementById("cd-d").textContent = d;
+    document.getElementById("cd-h").textContent = h;
+    document.getElementById("cd-m").textContent = m;
+    document.getElementById("cd-s").textContent = s;
+  }
+  tick(); setInterval(tick, 1000);
+</script>
+
+</body>
+</html>
