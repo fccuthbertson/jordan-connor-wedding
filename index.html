@@ -219,6 +219,59 @@
   details[open] summary::after { content: "–"; }
   details p { padding-top: 10px; font-size: .98rem; }
 
+  /* RSVP form */
+  .rsvp-wrap {
+    background: var(--card);
+    border: 1.5px solid var(--olive);
+    border-radius: 24px;
+    padding: clamp(28px, 5vw, 56px);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .rsvp-form { display: grid; gap: 20px; }
+  .rsvp-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 620px) { .rsvp-form .row { grid-template-columns: 1fr; } }
+  .rsvp-form label {
+    display: block;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 650; font-size: .85rem;
+    letter-spacing: .12em; text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .rsvp-form input[type="text"], .rsvp-form input[type="email"],
+  .rsvp-form select, .rsvp-form textarea {
+    width: 100%;
+    background: var(--cream);
+    border: 1.5px solid var(--olive);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1rem;
+    color: var(--olive);
+  }
+  .rsvp-form input:focus, .rsvp-form select:focus, .rsvp-form textarea:focus {
+    outline: 2px solid var(--accent-deep); outline-offset: 1px;
+  }
+  .rsvp-form .choices { display: flex; gap: 12px; flex-wrap: wrap; }
+  .rsvp-form .choice input { position: absolute; opacity: 0; pointer-events: none; }
+  .rsvp-form .choice span {
+    display: inline-block;
+    border: 1.5px solid var(--olive);
+    border-radius: 999px;
+    padding: 10px 22px;
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 600; font-size: .95rem;
+    cursor: pointer;
+    transition: all .15s ease;
+  }
+  .rsvp-form .choice input:checked + span { background: var(--olive); color: var(--cream); }
+  .rsvp-form .choice input:focus-visible + span { outline: 2px solid var(--accent-deep); outline-offset: 2px; }
+  .rsvp-form button.btn { border: 1.5px solid var(--olive); cursor: pointer; font-size: 1.05rem; padding: 14px 34px; justify-self: start; }
+  .rsvp-form .hint { font-size: .85rem; font-style: italic; opacity: .8; margin-top: 6px; }
+  .rsvp-status { font-size: 1.05rem; font-style: italic; }
+  .rsvp-status.err { color: #8a2f1d; }
+  .hp-field { position: absolute; left: -5000px; opacity: 0; height: 0; overflow: hidden; }
+
   /* Footer */
   footer {
     border-top: 1.5px solid var(--olive);
@@ -243,7 +296,7 @@
     <a href="#travel">Travel</a>
     <a href="#registry">Registry</a>
     <a href="#faq">FAQ</a>
-    <a class="btn" href="https://www.jordanconnor.com/rsvp">RSVP</a>
+    <a class="btn" href="#rsvp">RSVP</a>
   </div>
 </nav>
 
@@ -254,7 +307,7 @@
     <p class="date-line">Wednesday, March 24, 2027</p>
     <p class="place-line">Drumtochty Castle · Auchenblae, Scotland</p>
     <div class="cta-row">
-      <a class="btn" href="https://www.jordanconnor.com/rsvp">RSVP</a>
+      <a class="btn" href="#rsvp">RSVP</a>
       <a class="btn ghost" href="#travel">Plan your trip</a>
     </div>
   </div>
@@ -365,6 +418,64 @@
   </div>
 </section>
 
+<section id="rsvp">
+  <div class="section-head" style="text-align:center">
+    <h2>RSVP</h2>
+    <p class="sub" style="margin-left:auto;margin-right:auto">Find your invite code on your invitation, and let us know by December 24, 2026.</p>
+  </div>
+  <div class="rsvp-wrap">
+    <form class="rsvp-form" id="rsvpForm" method="POST" action="https://formspree.io/f/FORMSPREE_ID">
+      <input type="hidden" name="_subject" value="Wedding RSVP — connor-jordan.com">
+      <div class="hp-field" aria-hidden="true">
+        <label for="hp-email2">Leave this field empty</label>
+        <input type="text" id="hp-email2" name="_gotcha" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="row">
+        <div>
+          <label for="f-name">Name(s)</label>
+          <input type="text" id="f-name" name="name" required placeholder="Full name — list everyone in your party">
+        </div>
+        <div>
+          <label for="f-email">Email</label>
+          <input type="email" id="f-email" name="email" required placeholder="you@example.com">
+        </div>
+      </div>
+      <div>
+        <label>Will you be there?</label>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="attending" value="Joyfully accepts" required><span>Joyfully accepts ☆</span></label>
+          <label class="choice"><input type="radio" name="attending" value="Regretfully declines"><span>Regretfully declines</span></label>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="f-count">Guests in your party</label>
+          <select id="f-count" name="party_size">
+            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+          </select>
+        </div>
+        <div>
+          <label for="f-staying">Staying at the castle?</label>
+          <select id="f-staying" name="staying_at_castle">
+            <option>Not sure yet</option><option>Yes</option><option>No</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label for="f-diet">Dietary needs or allergies <em style="text-transform:none;letter-spacing:0">(optional)</em></label>
+        <textarea id="f-diet" name="dietary" rows="2" placeholder="Vegetarian, gluten-free, allergies…"></textarea>
+      </div>
+      <div>
+        <label for="f-code">Invite code</label>
+        <input type="text" id="f-code" name="invite_code" required placeholder="On your invitation" autocomplete="off">
+        <div class="hint">Can't find it? Reach out to Jordan or Connor.</div>
+      </div>
+      <button class="btn" type="submit">Send RSVP ☆</button>
+      <p class="rsvp-status" id="rsvpStatus" role="status"></p>
+    </form>
+  </div>
+</section>
+
 <section id="faq">
   <div class="two-col">
     <div class="section-head" style="margin-bottom:0">
@@ -394,7 +505,7 @@
 
 <footer>
   <div class="big">See you in Scotland ☆</div>
-  <a class="btn" href="https://www.jordanconnor.com/rsvp">RSVP</a>
+  <a class="btn" href="#rsvp">RSVP</a>
   <div class="small">Jordan + Connor · March 24, 2027 · Drumtochty Castle</div>
 </footer>
 
@@ -419,6 +530,46 @@
     document.getElementById("cd-s").textContent = s;
   }
   tick(); setInterval(tick, 1000);
+
+  // RSVP form: honeypot (handled by Formspree via _gotcha), minimum-fill-time, invite code, AJAX submit
+  const INVITE_CODE = "DRUMTOCHTY27"; // must match the code printed on the invitations
+  const rsvpForm = document.getElementById("rsvpForm");
+  const rsvpStatus = document.getElementById("rsvpStatus");
+  const formRenderedAt = Date.now();
+
+  rsvpForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    rsvpStatus.className = "rsvp-status";
+    rsvpStatus.textContent = "";
+
+    const code = rsvpForm.invite_code.value.replace(/[\s-]/g, "").toUpperCase();
+    if (code !== INVITE_CODE) {
+      rsvpStatus.className = "rsvp-status err";
+      rsvpStatus.textContent = "That invite code doesn't look right — check your invitation, or ask Jordan or Connor.";
+      return;
+    }
+    if (Date.now() - formRenderedAt < 3000) {
+      rsvpStatus.className = "rsvp-status err";
+      rsvpStatus.textContent = "Please take a moment to fill out the form.";
+      return;
+    }
+
+    const btn = rsvpForm.querySelector("button[type=submit]");
+    btn.disabled = true; btn.textContent = "Sending…";
+    try {
+      const res = await fetch(rsvpForm.action, {
+        method: "POST",
+        body: new FormData(rsvpForm),
+        headers: { Accept: "application/json" }
+      });
+      if (!res.ok) throw new Error("Request failed");
+      rsvpForm.innerHTML = '<p class="rsvp-status">Thank you! Your RSVP is in — we can\'t wait to celebrate with you. ☆</p>';
+    } catch {
+      rsvpStatus.className = "rsvp-status err";
+      rsvpStatus.textContent = "Something went wrong sending your RSVP. Please try again in a minute.";
+      btn.disabled = false; btn.textContent = "Send RSVP ☆";
+    }
+  });
 </script>
 
 </body>
