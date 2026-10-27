@@ -421,7 +421,7 @@
 <section id="rsvp">
   <div class="section-head" style="text-align:center">
     <h2>RSVP</h2>
-    <p class="sub" style="margin-left:auto;margin-right:auto">Find your invite code on your invitation, and let us know by December 24, 2026.</p>
+    <p class="sub" style="margin-left:auto;margin-right:auto">Let us know by December 24, 2026.</p>
   </div>
   <div class="rsvp-wrap">
     <form class="rsvp-form" id="rsvpForm" method="POST" action="https://formspree.io/f/FORMSPREE_ID">
@@ -464,11 +464,6 @@
       <div>
         <label for="f-diet">Dietary needs or allergies <em style="text-transform:none;letter-spacing:0">(optional)</em></label>
         <textarea id="f-diet" name="dietary" rows="2" placeholder="Vegetarian, gluten-free, allergies…"></textarea>
-      </div>
-      <div>
-        <label for="f-code">Invite code</label>
-        <input type="text" id="f-code" name="invite_code" required placeholder="On your invitation" autocomplete="off">
-        <div class="hint">Can't find it? Reach out to Jordan or Connor.</div>
       </div>
       <button class="btn" type="submit">Send RSVP ☆</button>
       <p class="rsvp-status" id="rsvpStatus" role="status"></p>
@@ -531,8 +526,7 @@
   }
   tick(); setInterval(tick, 1000);
 
-  // RSVP form: honeypot (handled by Formspree via _gotcha), minimum-fill-time, invite code, AJAX submit
-  const INVITE_CODE = "DRUMTOCHTY27"; // must match the code printed on the invitations
+  // RSVP form: honeypot (handled by Formspree via _gotcha), minimum-fill-time, AJAX submit
   const rsvpForm = document.getElementById("rsvpForm");
   const rsvpStatus = document.getElementById("rsvpStatus");
   const formRenderedAt = Date.now();
@@ -542,12 +536,6 @@
     rsvpStatus.className = "rsvp-status";
     rsvpStatus.textContent = "";
 
-    const code = rsvpForm.invite_code.value.replace(/[\s-]/g, "").toUpperCase();
-    if (code !== INVITE_CODE) {
-      rsvpStatus.className = "rsvp-status err";
-      rsvpStatus.textContent = "That invite code doesn't look right — check your invitation, or ask Jordan or Connor.";
-      return;
-    }
     if (Date.now() - formRenderedAt < 3000) {
       rsvpStatus.className = "rsvp-status err";
       rsvpStatus.textContent = "Please take a moment to fill out the form.";
